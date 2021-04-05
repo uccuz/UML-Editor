@@ -1,7 +1,7 @@
 package editor;
 
-import java.awt.Color;
-import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -9,17 +9,34 @@ import javax.swing.JMenuItem;
 
 public class MenuBar extends JMenuBar {
 
+	// Create menu
+	JMenu fileMenu;
+	JMenu editMenu;
+	
+	// Create menu item
+	JMenuItem exitItem;
+	JMenuItem groupItem;
+	JMenuItem ungroupItem;
+	JMenuItem changeObjectNameItem;
+	
 	MenuBar() {
 		
-		// Create menu
-		JMenu fileMenu = new JMenu("File");
-		JMenu editMenu = new JMenu("Edit");
+		// Initialize menu
+		fileMenu = new JMenu("File");
+		editMenu = new JMenu("Edit");
 		
-		// Create menu item
-		JMenuItem exitItem = new JMenuItem("Exit");
-		JMenuItem groupItem = new JMenuItem("Group");
-		JMenuItem ungroupItem = new JMenuItem("Ungroup");
-		JMenuItem changeObjectNameItem = new JMenuItem("Change object name");
+		// Initialize menu item
+		exitItem = new JMenuItem("Exit");
+		groupItem = new JMenuItem("Group");
+		ungroupItem = new JMenuItem("Ungroup");
+		changeObjectNameItem = new JMenuItem("Change object name");
+		
+		// Create and add action listener
+		MenuListener menuListener = new MenuListener();
+		exitItem.addActionListener(menuListener);
+		groupItem.addActionListener(menuListener);
+		ungroupItem.addActionListener(menuListener);
+		changeObjectNameItem.addActionListener(menuListener);
 		
 		// Add menu item into menu
 		fileMenu.add(exitItem);
@@ -27,11 +44,30 @@ public class MenuBar extends JMenuBar {
 		editMenu.add(ungroupItem);
 		editMenu.add(changeObjectNameItem);
 		
-		
-		
-		
+		// Add menu into menuBar
 		this.add(fileMenu);
 		this.add(editMenu);
+	}
+	
+	
+	class MenuListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// Handle all menu event
+			if(e.getSource()==exitItem) {
+				System.exit(0);
+			}
+			if(e.getSource()==groupItem) {
+				System.out.println("groupItem");
+			}
+			if(e.getSource()==ungroupItem) {
+				System.out.println("ungroupItem");
+			}
+			if(e.getSource()==changeObjectNameItem) {
+				System.out.println("changeObjectNameItem");
+			}
+		}
 		
 	}
 }
