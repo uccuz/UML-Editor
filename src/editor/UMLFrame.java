@@ -1,8 +1,10 @@
 package editor;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 
 public class UMLFrame extends JFrame{
@@ -28,13 +30,13 @@ public class UMLFrame extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(WIDTH,HEIGHT);
 		this.setLayout(new BorderLayout());
-		this.setJMenuBar(menuBar);
 		this.setVisible(true);
+		
 		
 		// Add component into frame
 		this.add(drawingArea,BorderLayout.CENTER);
 		this.add(toolBar,BorderLayout.WEST);
-		this.add(menuBar,BorderLayout.NORTH);
+		this.setJMenuBar(menuBar);
 	}
 	
 

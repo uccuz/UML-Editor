@@ -56,7 +56,7 @@ public class MenuBar extends JMenuBar {
 		public void actionPerformed(ActionEvent e) {
 			// Handle all menu event
 			if(e.getSource()==exitItem) {
-				System.exit(0);
+				System.exit(0);	// Exit program
 			}
 			if(e.getSource()==groupItem) {
 				System.out.println("groupItem");
