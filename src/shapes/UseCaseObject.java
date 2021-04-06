@@ -8,6 +8,7 @@ public class UseCaseObject extends BasicObject{
 	static final int HEIGHT = 90; 
 	
 	public UseCaseObject(int x,int y) {
+		super();
 		// Set object size
 		this.width = WIDTH;
 		this.height = HEIGHT;		
@@ -29,6 +30,8 @@ public class UseCaseObject extends BasicObject{
 		int StringWidth = g.getFontMetrics(g.getFont()).stringWidth(name);
 		g.drawString(name, minX+(Math.abs(minX-maxX) - StringWidth)/2 ,minY + (Math.abs(minY-maxY)/2));
 		
+		// Draw all ports
+		drawPort(g);
 		
 	}
 

@@ -8,6 +8,7 @@ public class ClassObject extends BasicObject{
 	static final int HEIGHT = 150; 
 	
 	public ClassObject(int x,int y) {
+		super();
 		// Set object size
 		this.width = WIDTH;
 		this.height = HEIGHT;		
@@ -31,6 +32,8 @@ public class ClassObject extends BasicObject{
 		int StringWidth = g.getFontMetrics(g.getFont()).stringWidth(name);
 		g.drawString(name, minX+(Math.abs(minX-maxX) - StringWidth)/2 ,minY + (Math.abs(minY-maxY)/6));
 		
+		// Draw all ports
+		drawPort(g);
 		
 	}
 
