@@ -1,5 +1,7 @@
 package modes;
 
-public class Mode {
+public interface Mode {
 
+	void onMousePressed(int x,int y);
+	void onMouseReleased(int x,int y);
 }
