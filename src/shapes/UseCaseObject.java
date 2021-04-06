@@ -12,10 +12,11 @@ public class UseCaseObject extends BasicObject{
 		this.width = WIDTH;
 		this.height = HEIGHT;		
 		// Set object position
-		this.minX = x;
+		setPosition(x,y);
+		/*this.minX = x;
 		this.minY = y;
 		this.maxX = x + this.width;
-		this.maxY = y + this.height;
+		this.maxY = y + this.height;*/
 	}
 	
 	@Override
@@ -30,5 +31,6 @@ public class UseCaseObject extends BasicObject{
 		
 		
 	}
+
 
 }

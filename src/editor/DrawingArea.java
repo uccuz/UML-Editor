@@ -8,7 +8,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.JPanel;
 
@@ -17,8 +17,6 @@ import java.util.ArrayList;
 import modes.Mode;
 import modes.ModeManager;
 import shapes.Shape;
-import shapes.ClassObject;
-import shapes.UseCaseObject;
 
 public class DrawingArea extends JPanel{
 
@@ -31,6 +29,7 @@ public class DrawingArea extends JPanel{
 	DrawingArea() {
 		// Add mouse listener
 		this.addMouseListener(new ClickListener());		
+		this.addMouseMotionListener(new DragListener());
 
 	}
 	
@@ -46,6 +45,34 @@ public class DrawingArea extends JPanel{
 	public void addShape(Shape shape) {
 		shapes.add(shape);
 	}
+	
+	// Get shape in drawing area
+	public Shape GetShape(int i) {
+		if(i>=0 && i<shapes.size())
+			return shapes.get(i);
+		return null;
+	}
+	
+	// Select shape in drawing area
+	public Shape selectShape(int x,int y) {
+		int selected = -1;
+		for(int i = 0 ; i < shapes.size() ; i++) {
+			if(shapes.get(i).isTouched(x,y)) {
+				selected = i;
+			}
+		}
+		if (selected != -1) {
+			System.out.println("select: " + selected);
+			return shapes.get(selected);
+		}
+		return null;
+	}
+	
+	// Get shapeList in drawing area
+	/*public ArrayList<Shape> GetShapeList() {
+		return shapes;
+	}*/
+	
 	
 	// set drawing mode
 	public void setMode(int i) {
@@ -90,5 +117,14 @@ public class DrawingArea extends JPanel{
 		}
 	}
 	
+	// Handle all mouse motion event in drawing area
+	private class DragListener extends MouseMotionAdapter{
+		public void mouseDragged(MouseEvent e) {
+			Mode mode = modeManager.GetCurrentMode();
+			if(mode == null)
+				return;
+			mode.onMouseDragged(e.getX(), e.getY());
+		}
+	}
 
 }

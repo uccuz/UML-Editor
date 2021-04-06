@@ -14,4 +14,10 @@ public class CompositionMode implements Mode {
 		
 	}
 
+	@Override
+	public void onMouseDragged(int x, int y) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
