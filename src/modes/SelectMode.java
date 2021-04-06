@@ -13,8 +13,16 @@ public class SelectMode implements Mode {
 	@Override
 	public void onMousePressed(int x, int y) {
 		// TODO Auto-generated method stub
-		System.out.println("start");
+		//System.out.println("start");
+		if(selectedShape != null)
+			selectedShape.isSelected = false;
+		
 		selectedShape = drawingArea.selectShape(x, y);
+		
+		if(selectedShape != null) {
+			selectedShape.isSelected = true;
+			drawingArea.repaint();
+		}
 		
 		setPrevPos(x,y);
 	}

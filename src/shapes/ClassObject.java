@@ -33,7 +33,8 @@ public class ClassObject extends BasicObject{
 		g.drawString(name, minX+(Math.abs(minX-maxX) - StringWidth)/2 ,minY + (Math.abs(minY-maxY)/6));
 		
 		// Draw all ports
-		drawPort(g);
+		if(isSelected)
+			drawPort(g);
 		
 	}
 

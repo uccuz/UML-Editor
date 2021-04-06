@@ -4,6 +4,8 @@ import java.awt.Graphics;
 
 public abstract class Shape {
 	
+	public boolean isSelected = false;
+	
 	public int minX,minY;
 	public int maxX,maxY;
 	

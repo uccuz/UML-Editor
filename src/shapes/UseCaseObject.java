@@ -31,7 +31,8 @@ public class UseCaseObject extends BasicObject{
 		g.drawString(name, minX+(Math.abs(minX-maxX) - StringWidth)/2 ,minY + (Math.abs(minY-maxY)/2));
 		
 		// Draw all ports
-		drawPort(g);
+		if(isSelected)
+			drawPort(g);
 		
 	}
 
