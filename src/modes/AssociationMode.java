@@ -1,13 +1,11 @@
 package modes;
 
-import shapes.UseCaseObject;
-
-public class SelectMode implements Mode {
+public class AssociationMode implements Mode {
 
 	@Override
 	public void onMousePressed(int x, int y) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
@@ -15,6 +13,5 @@ public class SelectMode implements Mode {
 		// TODO Auto-generated method stub
 		
 	}
-
 
 }

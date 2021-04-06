@@ -36,12 +36,12 @@ public class ToolBar extends JToolBar{
 		this.setFloatable(false); // can't be moved
 		
 		// Create button
-		DrawBtn selectBtn = new DrawBtn(selectIcon, new SelectMode());
-		DrawBtn associationBtn = new DrawBtn(associationIcon, new SelectMode());
-		DrawBtn generalizationBtn = new DrawBtn(generalizationIcon, new SelectMode());
-		DrawBtn compositionBtn = new DrawBtn(compositionIcon, new SelectMode());
-		DrawBtn classBtn = new DrawBtn(classIcon, new SelectMode());
-		DrawBtn useCaseBtn = new DrawBtn(useCaseIcon, new SelectMode());
+		DrawBtn selectBtn = new DrawBtn(selectIcon, 0);
+		DrawBtn associationBtn = new DrawBtn(associationIcon, 1);
+		DrawBtn generalizationBtn = new DrawBtn(generalizationIcon, 2);
+		DrawBtn compositionBtn = new DrawBtn(compositionIcon, 3);
+		DrawBtn classBtn = new DrawBtn(classIcon, 4);
+		DrawBtn useCaseBtn = new DrawBtn(useCaseIcon, 5);
 		
 		// Add button into toolBar
 		this.add(selectBtn);
@@ -54,10 +54,11 @@ public class ToolBar extends JToolBar{
 	}
 	
 	private class DrawBtn extends JButton {
-		Mode mode;
-		DrawBtn(ImageIcon icon,Mode mode) {
+		
+		int managerNum = -1;
+		DrawBtn(ImageIcon icon,int managerNum) {
 			this.setIcon(icon);
-			this.mode = mode;
+			this.managerNum = managerNum;
 			this.addActionListener(new BtnListener());
 		}
 		
@@ -65,7 +66,7 @@ public class ToolBar extends JToolBar{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("trigger");
+				//System.out.println("trigger");
 				
 				// Set button color
 				if(holdBtn != null) {
@@ -74,8 +75,9 @@ public class ToolBar extends JToolBar{
 				holdBtn = (DrawBtn) e.getSource();
 				holdBtn.setBackground(Color.gray);
 				
+				//System.out.println(managerNum);
 				// Set drawingArea mode
-				DrawingArea.getInstance().setMode(mode);
+				DrawingArea.getInstance().setMode(managerNum);
 			}
 			
 		}

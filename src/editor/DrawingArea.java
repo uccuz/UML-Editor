@@ -1,6 +1,8 @@
 package editor;
 
 import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -13,6 +15,7 @@ import javax.swing.JPanel;
 import java.util.ArrayList;
 
 import modes.Mode;
+import modes.ModeManager;
 import shapes.Shape;
 import shapes.ClassObject;
 import shapes.UseCaseObject;
@@ -22,18 +25,12 @@ public class DrawingArea extends JPanel{
 	// singleton object
 	private static DrawingArea _drawingArea = null;
 	
-	private Mode mode = null;
-	
-	public ArrayList<Shape> shapes = new ArrayList<Shape>();
+	private ModeManager modeManager = new ModeManager();
+	private ArrayList<Shape> shapes = new ArrayList<Shape>();
 	
 	DrawingArea() {
-		
 		// Add mouse listener
-		this.addMouseListener(new ClickListener());
-		
-		addShape(new ClassObject(100, 100));
-		addShape(new UseCaseObject(400, 100));
-		
+		this.addMouseListener(new ClickListener());		
 
 	}
 	
@@ -45,16 +42,26 @@ public class DrawingArea extends JPanel{
         return _drawingArea;
 	}
 	
+	// Add shape into drawing area
 	public void addShape(Shape shape) {
 		shapes.add(shape);
 	}
 	
-	public void setMode(Mode mode) {
-		this.mode = mode;
+	// set drawing mode
+	public void setMode(int i) {
+		modeManager.setCurrentMode(i);
 	}
 	
 	public void paint(Graphics g) {
 		
+		//¤£¥[·|Ãa±¼
+		Dimension dim = getSize();
+		g.setColor(new Color(35, 37, 37));
+		g.fillRect(0, 0, dim.width, dim.height);
+		g.setColor(Color.white);
+		
+		
+		// Draw setting
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setStroke(new BasicStroke(4));
 		g2d.setFont(new Font("Monaco",Font.PLAIN,16));
@@ -66,17 +73,20 @@ public class DrawingArea extends JPanel{
 		
 	}
 
-	
+	// Handle all mouse event in drawing area
 	private class ClickListener extends MouseAdapter{
 		
-		// Handle mouse event
 		public void mousePressed(MouseEvent e) {
-			System.out.println("pressed");
-			addShape(new ClassObject(e.getX(), e.getY()));
-			//repaint();
+			Mode mode = modeManager.GetCurrentMode();
+			if(mode == null)
+				return;
+			mode.onMousePressed(e.getX(), e.getY());
 		}
 		public void mouseReleased(MouseEvent e) {
-			System.out.println("release");
+			Mode mode = modeManager.GetCurrentMode();
+			if(mode == null)
+				return;
+			mode.onMouseReleased(e.getX(), e.getY());
 		}
 	}
 	

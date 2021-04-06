@@ -14,14 +14,14 @@ public class UMLFrame extends JFrame{
 	final int HEIGHT = 700;
 	
 	// Component
-	DrawingArea drawingArea;
+    static DrawingArea drawingArea;
 	ToolBar toolBar;
 	MenuBar menuBar;
 	
 	UMLFrame(){
 		
 		// Initialize component
-		drawingArea = new DrawingArea();
+		drawingArea = DrawingArea.getInstance();
 		toolBar = new ToolBar();
 		menuBar = new MenuBar();
 		

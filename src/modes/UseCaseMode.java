@@ -2,12 +2,13 @@ package modes;
 
 import shapes.UseCaseObject;
 
-public class SelectMode implements Mode {
+public class UseCaseMode implements Mode {
 
 	@Override
 	public void onMousePressed(int x, int y) {
 		// TODO Auto-generated method stub
-
+		drawingArea.addShape(new UseCaseObject(x, y));
+		drawingArea.repaint();
 	}
 
 	@Override
@@ -15,6 +16,5 @@ public class SelectMode implements Mode {
 		// TODO Auto-generated method stub
 		
 	}
-
 
 }
