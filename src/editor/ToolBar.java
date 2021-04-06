@@ -36,12 +36,12 @@ public class ToolBar extends JToolBar{
 		this.setFloatable(false); // can't be moved
 		
 		// Create button
-		DrawBtn selectBtn = new DrawBtn(selectIcon, new Mode());
-		DrawBtn associationBtn = new DrawBtn(associationIcon, new Mode());
-		DrawBtn generalizationBtn = new DrawBtn(generalizationIcon, new Mode());
-		DrawBtn compositionBtn = new DrawBtn(compositionIcon, new Mode());
-		DrawBtn classBtn = new DrawBtn(classIcon, new Mode());
-		DrawBtn useCaseBtn = new DrawBtn(useCaseIcon, new Mode());
+		DrawBtn selectBtn = new DrawBtn(selectIcon, new SelectMode());
+		DrawBtn associationBtn = new DrawBtn(associationIcon, new SelectMode());
+		DrawBtn generalizationBtn = new DrawBtn(generalizationIcon, new SelectMode());
+		DrawBtn compositionBtn = new DrawBtn(compositionIcon, new SelectMode());
+		DrawBtn classBtn = new DrawBtn(classIcon, new SelectMode());
+		DrawBtn useCaseBtn = new DrawBtn(useCaseIcon, new SelectMode());
 		
 		// Add button into toolBar
 		this.add(selectBtn);

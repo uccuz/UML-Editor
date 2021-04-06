@@ -1,6 +1,6 @@
 package modes;
 
-public class SlectMode implements Mode{
+public class SelectMode implements Mode{
 
 	@Override
 	public void onMousePressed(int x, int y) {
@@ -13,5 +13,6 @@ public class SlectMode implements Mode{
 		// TODO Auto-generated method stub
 		
 	}
+
 
 }
