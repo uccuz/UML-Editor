@@ -26,7 +26,9 @@ public class Port extends Shape{
 
 	@Override
 	public boolean isTouched(int x, int y) {
-		// TODO Auto-generated method stub
+		if(x > minX && x < maxX && y > minY && y < maxY) {
+			return true;
+		}
 		return false;
 	}
 
