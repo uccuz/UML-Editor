@@ -10,11 +10,11 @@ public abstract class BasicObject extends Shape{
 	static final int PORTNUM = 4;
 	static final int MARGIN = 10;
 	
-	protected Port port[] = new Port[PORTNUM];
+	protected Port ports[] = new Port[PORTNUM];
 	
 	BasicObject() {
 		for(int i = 0 ; i < PORTNUM ; i++) {
-			port[i] = new Port(0,0);
+			ports[i] = new Port(0,0);
 		}
 	}
 	
@@ -28,15 +28,15 @@ public abstract class BasicObject extends Shape{
 	
 	protected void setPortPosition() {
 		// Set port position
-		port[0].setPosition(minX + (maxX - minX)/2 -5, minY - MARGIN - 1);
-		port[1].setPosition(minX + (maxX - minX)/2 -5, maxY + MARGIN - 8);
-		port[2].setPosition(minX - MARGIN, minY + (maxY - minY)/2 - 5);
-		port[3].setPosition(maxX + MARGIN - 8, minY + (maxY - minY)/2 - 5);
+		ports[0].setPosition(minX + (maxX - minX)/2 -5, minY - MARGIN - 1);
+		ports[1].setPosition(minX + (maxX - minX)/2 -5, maxY + MARGIN - 8);
+		ports[2].setPosition(minX - MARGIN, minY + (maxY - minY)/2 - 5);
+		ports[3].setPosition(maxX + MARGIN - 8, minY + (maxY - minY)/2 - 5);
 	}
 	
 	protected void drawPort(Graphics g) {
 		for(int i = 0 ; i < PORTNUM ; i++) {
-			port[i].draw(g);
+			ports[i].draw(g);
 		}
 	}
 	
@@ -48,6 +48,17 @@ public abstract class BasicObject extends Shape{
 	}
 	
 	public Port getPort(int x, int y) {
-		return port[0];
+		
+		// Find the shortest distance port
+		int smaller = Integer.MAX_VALUE;
+		int index = 0;
+		for(int i = 0 ; i < ports.length ; i++ ) {
+			if( smaller > ports[i].getDistance(x,y) ) {
+				smaller = ports[i].getDistance(x,y);
+				index = i;
+			}
+		}
+		return ports[index];
 	}
+
 }

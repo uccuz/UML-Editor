@@ -31,5 +31,12 @@ public class Port extends Shape{
 		}
 		return false;
 	}
+	
+	public int getDistance(int x2,int y2) {
+		int x1 = minX + (maxX - minX)/2;
+		int y1 = minY + (maxY - minY)/2;
+		
+		return (int)Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
+	}
 
 }

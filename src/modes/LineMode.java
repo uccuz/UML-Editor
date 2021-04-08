@@ -7,7 +7,7 @@ import shapes.Line;
 public class LineMode implements Mode {
 
 	Line line = null;
-	//BasicObject frontObject = null;
+	BasicObject frontObject = null;
 	
 	@Override
 	public void onMousePressed(int x, int y) {
@@ -21,15 +21,16 @@ public class LineMode implements Mode {
 	@Override
 	public void onMouseReleased(int x, int y) {
 		if(line != null) {
-			BasicObject object = canvas.selectObject(x, y);
-			if(object == null) {
+			BasicObject endObject = canvas.selectObject(x, y);
+			if(endObject == null || frontObject == endObject) {
 				canvas.removeShape(line);
 			}
 			else {
-				line.setEndPort(object.getPort(x, y));
+				line.setEndPort(endObject.getPort(x, y));
 			}
 		}
 		line = null;
+		frontObject = null;
 		canvas.repaint();
 	}
 
@@ -39,16 +40,15 @@ public class LineMode implements Mode {
 			line.setEndPosition(x, y);
 			canvas.repaint();
 		}
-			
-		
 	}
 	
 	public Line createLine(int x,int y,Line line) {
 		
-		BasicObject object = canvas.selectObject(x, y);
-		if(object == null)
+		BasicObject frontObject = canvas.selectObject(x, y);
+		if(frontObject == null)
 			return null;
-		line.setFrontPort(object.getPort(x, y));
+		line.setFrontPort(frontObject.getPort(x, y));
+		this.frontObject = frontObject;
 		return line;
 	}
 
