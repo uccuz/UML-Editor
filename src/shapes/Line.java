@@ -13,14 +13,7 @@ public class Line extends Shape {
 	
 	@Override
 	public void draw(Graphics g) {
-		if(frontPort != null) {
-			minX = frontPort.minX + ( frontPort.maxX - frontPort.minX )/2;
-			minY = frontPort.minY + ( frontPort.maxY - frontPort.minY )/2;
-		}
-		if(endPort != null) {
-			maxX = endPort.minX + ( endPort.maxX - endPort.minX )/2;
-			maxY = endPort.minY + ( endPort.maxY - endPort.minY )/2;
-		}
+		setPosition();
 		g.drawLine(minX,minY,maxX,maxY);
 	}
 
@@ -37,6 +30,17 @@ public class Line extends Shape {
 		return false;
 	}
 	
+	public void setPosition() {
+		if(frontPort != null) {
+			minX = frontPort.minX + ( frontPort.maxX - frontPort.minX )/2;
+			minY = frontPort.minY + ( frontPort.maxY - frontPort.minY )/2;
+		}
+		if(endPort != null) {
+			maxX = endPort.minX + ( endPort.maxX - endPort.minX )/2;
+			maxY = endPort.minY + ( endPort.maxY - endPort.minY )/2;
+		}
+	}
+	
 	public void setEndPosition(int x, int y) {
 		this.maxX = x;
 		this.maxY = y;
@@ -49,5 +53,6 @@ public class Line extends Shape {
 	public void setEndPort(Port port) {
 		endPort = port;
 	}
+	
 	
 }
