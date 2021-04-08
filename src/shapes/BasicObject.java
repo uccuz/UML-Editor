@@ -10,7 +10,7 @@ public abstract class BasicObject extends Shape{
 	static final int PORTNUM = 4;
 	static final int MARGIN = 10;
 	
-	protected Shape port[] = new Port[PORTNUM];
+	protected Port port[] = new Port[PORTNUM];
 	
 	BasicObject() {
 		for(int i = 0 ; i < PORTNUM ; i++) {
@@ -45,6 +45,9 @@ public abstract class BasicObject extends Shape{
 			return true;
 		}
 		return false;
-
+	}
+	
+	public Port getPort(int x, int y) {
+		return port[0];
 	}
 }

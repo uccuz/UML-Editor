@@ -12,9 +12,11 @@ import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.JPanel;
 
+
 import java.util.ArrayList;
 
 import modes.Mode;
+import shapes.BasicObject;
 import shapes.Shape;
 
 public class Canvas extends JPanel{
@@ -46,13 +48,19 @@ public class Canvas extends JPanel{
 	}
 	
 	// Get shape in canvas
-	public Shape GetShape(int i) {
-		if( i >= 0 && i < shapes.size())
+	public Shape getShape(int i) {
+		if( i >= 0 && i < shapes.size() )
 			return shapes.get(i);
 		return null;
 	}
 	
-	// Select shape in drawing area
+	// Remove shape in canvas
+	public void removeShape(Shape shape) {
+		if(shapes.contains(shape))
+			shapes.remove(shape);
+	}
+	
+	// Select shape in canvas
 	public Shape selectShape(int x,int y) {
 		int selected = -1;
 		for(int i = 0 ; i < shapes.size() ; i++) {
@@ -61,6 +69,18 @@ public class Canvas extends JPanel{
 		}
 		if(selected != -1)
 			return shapes.get(selected);
+		return null;
+	}
+	
+	// Select Object in canvas
+	public BasicObject selectObject(int x,int y) {
+		int selected = -1;
+		for(int i = 0 ; i < shapes.size() ; i++) {
+			if(shapes.get(i).isTouched(x,y) && (shapes.get(i) instanceof BasicObject))
+				selected = i;
+		}
+		if(selected != -1)
+			return (BasicObject)shapes.get(selected);
 		return null;
 	}
 	
@@ -130,5 +150,6 @@ public class Canvas extends JPanel{
 			currentMode.onMouseDragged(e.getX(), e.getY());
 		}
 	}
+
 
 }
