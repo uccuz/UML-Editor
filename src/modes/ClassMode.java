@@ -2,11 +2,10 @@ package modes;
 
 import shapes.ClassObject;
 
-public class ClassMode implements Mode{
+public class ClassMode implements Mode {
 
 	@Override
 	public void onMousePressed(int x, int y) {
-		// TODO Auto-generated method stub
 		canvas.addShape(new ClassObject(x, y));
 		canvas.repaint();
 	}

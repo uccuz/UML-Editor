@@ -56,15 +56,20 @@ public class Canvas extends JPanel{
 	public Shape selectShape(int x,int y) {
 		int selected = -1;
 		for(int i = 0 ; i < shapes.size() ; i++) {
-			if(shapes.get(i).isTouched(x,y)) {
+			if(shapes.get(i).isTouched(x,y))
 				selected = i;
-			}
 		}
-		if (selected != -1) {
-			System.out.println("select: " + selected);
+		if(selected != -1)
 			return shapes.get(selected);
-		}
 		return null;
+	}
+	
+	// Clear all selection
+	public void clearSelection() {
+		shapes.forEach((shape)->{
+			shape.isSelected = false;
+		});
+		this.repaint();
 	}
 	
 	

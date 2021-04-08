@@ -3,8 +3,6 @@ package shapes;
 import java.awt.Graphics;
 
 public abstract class BasicObject extends Shape{
-
-
 	
 	protected int width, height; 
 	protected String name = "Object Name";
@@ -28,7 +26,7 @@ public abstract class BasicObject extends Shape{
 		setPortPosition();
 	}
 	
-	private void setPortPosition() {
+	protected void setPortPosition() {
 		// Set port position
 		port[0].setPosition(minX + (maxX - minX)/2 -5, minY - MARGIN - 1);
 		port[1].setPosition(minX + (maxX - minX)/2 -5, maxY + MARGIN - 8);
@@ -43,8 +41,6 @@ public abstract class BasicObject extends Shape{
 	}
 	
 	public boolean isTouched(int x, int y) {
-		//System.out.println("your X: " + x + " your Y: " + y);
-		//System.out.println("minX: " + minX + " maxX: " + maxX + "minY: " + minY + " maxY: " + maxY);
 		if(x > minX && x < maxX && y > minY && y < maxY) {
 			return true;
 		}

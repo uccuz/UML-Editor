@@ -5,7 +5,7 @@ import java.awt.Graphics;
 public class Port extends Shape{
 
 	static final int lENGTH = 10;
-	static final int TOUCHSIZE = 5;
+	static final int TOUCHSIZE = 10;
 	
 	public Port(int x,int y) {
 		setPosition(x,y);
@@ -26,7 +26,7 @@ public class Port extends Shape{
 
 	@Override
 	public boolean isTouched(int x, int y) {
-		if(x > minX && x < maxX && y > minY && y < maxY) {
+		if(x > (minX-TOUCHSIZE) && x < (maxX+TOUCHSIZE) && y > (minY-TOUCHSIZE) && y < (maxY + TOUCHSIZE)) {
 			return true;
 		}
 		return false;

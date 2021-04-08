@@ -7,16 +7,12 @@ public class SelectMode implements Mode {
 
 	Shape selectedShape = null;
 	
-	int prevX = 0;
-	int prevY = 0;
+	private int prevX = 0;
+	private int prevY = 0;
 	
 	@Override
 	public void onMousePressed(int x, int y) {
-		// TODO Auto-generated method stub
-		//System.out.println("start");
-		if(selectedShape != null)
-			selectedShape.isSelected = false;
-		
+		canvas.clearSelection();
 		selectedShape = canvas.selectShape(x, y);
 		
 		if(selectedShape != null) {
@@ -34,17 +30,11 @@ public class SelectMode implements Mode {
 
 	@Override
 	public void onMouseDragged(int x, int y) {
-			
-		if(selectedShape == null) {
+		if(selectedShape == null)
 			return;
-		}
-		/*System.out.println("x: " + x  + " y: " + y);*/
-		int currentX = selectedShape.minX + ( x - prevX );
-		int currentY = selectedShape.minY + ( y - prevY );
-		selectedShape.setPosition(currentX, currentY);
 		
+		selectedShape.setPosition(selectedShape.minX + ( x - prevX ), selectedShape.minY + ( y - prevY ));
 		setPrevPos(x,y);
-
 		canvas.repaint();
 	}
 	
@@ -52,12 +42,5 @@ public class SelectMode implements Mode {
 		prevX = x;
 		prevY = y;
 	}
-	
-	/*private Shape selectShape(int x,int y) {
-		Shape ArrayList<Shape> = Canvas.GetShapeList();
-		
-		return null;
-	}*/
-
 
 }

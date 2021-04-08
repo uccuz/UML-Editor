@@ -73,6 +73,7 @@ public class ToolBar extends JToolBar{
 				holdBtn = (DrawBtn) e.getSource();
 			if(holdBtn != null) {
 				holdBtn.setBackground(Color.gray);
+				canvas.clearSelection();
 				canvas.setMode(holdBtn.getMode());
 			}
 		}
@@ -84,6 +85,7 @@ public class ToolBar extends JToolBar{
 		
 		DrawBtn(ImageIcon icon, Mode mode) {
 			this.setIcon(icon);
+			this.setFocusable(false);
 			this.mode = mode;
 		}
 		

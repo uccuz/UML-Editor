@@ -11,13 +11,9 @@ public class ClassObject extends BasicObject{
 		super();
 		// Set object size
 		this.width = WIDTH;
-		this.height = HEIGHT;		
+		this.height = HEIGHT;
 		// Set object position
 		setPosition(x,y);
-		/*this.minX = x;
-		this.minY = y;
-		this.maxX = x + this.width;
-		this.maxY = y + this.height;*/
 	}
 
 	@Override
