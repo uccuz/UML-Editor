@@ -17,11 +17,11 @@ public class SelectMode implements Mode {
 		if(selectedShape != null)
 			selectedShape.isSelected = false;
 		
-		selectedShape = Canvas.selectShape(x, y);
+		selectedShape = canvas.selectShape(x, y);
 		
 		if(selectedShape != null) {
 			selectedShape.isSelected = true;
-			Canvas.repaint();
+			canvas.repaint();
 		}
 		
 		setPrevPos(x,y);
@@ -45,7 +45,7 @@ public class SelectMode implements Mode {
 		
 		setPrevPos(x,y);
 
-		Canvas.repaint();
+		canvas.repaint();
 	}
 	
 	private void setPrevPos(int x,int y) {

@@ -15,7 +15,6 @@ import javax.swing.JPanel;
 import java.util.ArrayList;
 
 import modes.Mode;
-import modes.ModeManager;
 import shapes.Shape;
 
 public class Canvas extends JPanel{
@@ -23,11 +22,11 @@ public class Canvas extends JPanel{
 	// Singleton object
 	private static Canvas _Canvas = null;
 	
-	private ModeManager modeManager = new ModeManager();
 	private ArrayList<Shape> shapes = new ArrayList<Shape>();
 	
+	Mode currentMode = null;
+	
 	Canvas() {
-		// Add mouse listener
 		this.addMouseListener(new ClickListener());		
 		this.addMouseMotionListener(new DragListener());
 	}
@@ -70,18 +69,17 @@ public class Canvas extends JPanel{
 	
 	
 	// set drawing mode
-	public void setMode(int i) {
-		modeManager.setCurrentMode(i);
+	public void setMode(Mode mode) {
+		currentMode = mode;
 	}
 	
+	// Paint all thing
 	public void paint(Graphics g) {
-		
 		//Need to Change
 		Dimension dim = getSize();
 		g.setColor(new Color(35, 37, 37));
 		g.fillRect(0, 0, dim.width, dim.height);
 		g.setColor(Color.white);
-		
 		
 		// Draw setting
 		Graphics2D g2d = (Graphics2D) g;
@@ -100,22 +98,19 @@ public class Canvas extends JPanel{
 		
 		@Override
 		public void mousePressed(MouseEvent e) {
-			// GetCurentMode
-			Mode mode = modeManager.GetCurrentMode();
-			if(mode == null)
+			if(currentMode == null)
 				return;
 			// Trigger mode
-			mode.onMousePressed(e.getX(), e.getY());
+			currentMode.onMousePressed(e.getX(), e.getY());
 		}
 		 
 		@Override
 		public void mouseReleased(MouseEvent e) {
 			// GetCurentMode
-			Mode mode = modeManager.GetCurrentMode();
-			if(mode == null)
+			if(currentMode == null)
 				return;
 			// Trigger mode
-			mode.onMouseReleased(e.getX(), e.getY());
+			currentMode.onMouseReleased(e.getX(), e.getY());
 		}
 	}
 	
@@ -124,12 +119,10 @@ public class Canvas extends JPanel{
 		
 		@Override
 		public void mouseDragged(MouseEvent e) {
-			// GetCurentMode
-			Mode mode = modeManager.GetCurrentMode();
-			if(mode == null)
+			if(currentMode == null)
 				return;
 			// Trigger mode
-			mode.onMouseDragged(e.getX(), e.getY());
+			currentMode.onMouseDragged(e.getX(), e.getY());
 		}
 	}
 

@@ -9,6 +9,8 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JToolBar;
 
+import modes.*;
+
 
 public class ToolBar extends JToolBar{
 	
@@ -24,6 +26,8 @@ public class ToolBar extends JToolBar{
 	
 	// Setting
 	DrawBtn holdBtn = null;
+	BtnListener btnListener = new BtnListener();
+	Canvas canvas = Canvas.getInstance();
 	
 	ToolBar() {
 		
@@ -32,12 +36,20 @@ public class ToolBar extends JToolBar{
 		this.setFloatable(false); // can't be moved
 		
 		// Create button
-		DrawBtn selectBtn = new DrawBtn(selectIcon, 0);
-		DrawBtn associationBtn = new DrawBtn(associationIcon, 1);
-		DrawBtn generalizationBtn = new DrawBtn(generalizationIcon, 2);
-		DrawBtn compositionBtn = new DrawBtn(compositionIcon, 3);
-		DrawBtn classBtn = new DrawBtn(classIcon, 4);
-		DrawBtn useCaseBtn = new DrawBtn(useCaseIcon, 5);
+		DrawBtn selectBtn = new DrawBtn(selectIcon, new SelectMode());
+		DrawBtn associationBtn = new DrawBtn(associationIcon, new AssociationMode());
+		DrawBtn generalizationBtn = new DrawBtn(generalizationIcon, new GeneralizationMode());
+		DrawBtn compositionBtn = new DrawBtn(compositionIcon, new CompositionMode());
+		DrawBtn classBtn = new DrawBtn(classIcon, new ClassMode());
+		DrawBtn useCaseBtn = new DrawBtn(useCaseIcon, new UseCaseMode());
+		
+		// Add button listener
+		selectBtn.addActionListener(btnListener);
+		associationBtn.addActionListener(btnListener);
+		generalizationBtn.addActionListener(btnListener);
+		compositionBtn.addActionListener(btnListener);
+		classBtn.addActionListener(btnListener);
+		useCaseBtn.addActionListener(btnListener);
 		
 		// Add button into toolBar
 		this.add(selectBtn);
@@ -49,36 +61,34 @@ public class ToolBar extends JToolBar{
 	
 	}
 	
+	// Listen all button event
+	private class BtnListener implements ActionListener {
 
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// Set new hold button
+			if(holdBtn != null)
+				holdBtn.setBackground(Color.white);
+			if(e.getSource() instanceof DrawBtn)
+				holdBtn = (DrawBtn) e.getSource();
+			if(holdBtn != null) {
+				holdBtn.setBackground(Color.gray);
+				canvas.setMode(holdBtn.getMode());
+			}
+		}
+	}
 	
 	private class DrawBtn extends JButton {
 		
-		int managerNum = -1;
+		Mode mode = null;
 		
-		DrawBtn(ImageIcon icon, int managerNum) {
+		DrawBtn(ImageIcon icon, Mode mode) {
 			this.setIcon(icon);
-			this.managerNum = managerNum;
-			this.addActionListener(new BtnListener());
+			this.mode = mode;
 		}
 		
-		private class BtnListener implements ActionListener {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				//System.out.println("trigger");
-				
-				// Set button color
-				if(holdBtn != null) {
-					holdBtn.setBackground(Color.white);
-				}
-				holdBtn = (DrawBtn) e.getSource();
-				holdBtn.setBackground(Color.gray);
-				
-				//System.out.println(managerNum);
-				// Set Canvas mode
-				Canvas.getInstance().setMode(managerNum);
-			}
-			
+		public Mode getMode() {
+			return mode;
 		}
 		
 	}
