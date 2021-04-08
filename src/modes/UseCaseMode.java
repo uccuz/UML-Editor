@@ -7,8 +7,8 @@ public class UseCaseMode implements Mode {
 	@Override
 	public void onMousePressed(int x, int y) {
 		// TODO Auto-generated method stub
-		drawingArea.addShape(new UseCaseObject(x, y));
-		drawingArea.repaint();
+		Canvas.addShape(new UseCaseObject(x, y));
+		Canvas.repaint();
 	}
 
 	@Override

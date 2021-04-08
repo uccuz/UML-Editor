@@ -1,10 +1,8 @@
 package editor;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 
 public class UMLFrame extends JFrame{
@@ -13,28 +11,30 @@ public class UMLFrame extends JFrame{
 	final int WIDTH = 1000;
 	final int HEIGHT = 700;
 	
+	// Frame title
+	final String TITLE = "UML editor";
+	
 	// Component
-    static DrawingArea drawingArea;
+    Canvas Canvas;
 	ToolBar toolBar;
 	MenuBar menuBar;
 	
 	UMLFrame(){
 		
 		// Initialize component
-		drawingArea = DrawingArea.getInstance();
+		Canvas  = Canvas.getInstance();
 		toolBar = new ToolBar();
 		menuBar = new MenuBar();
 		
 		// Initialize frame
-		this.setTitle("UML editor");
+		this.setTitle(TITLE);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(WIDTH,HEIGHT);
 		this.setLayout(new BorderLayout());
 		this.setVisible(true);
 		
-		
 		// Add component into frame
-		this.add(drawingArea,BorderLayout.CENTER);
+		this.add(Canvas,BorderLayout.CENTER);
 		this.add(toolBar,BorderLayout.WEST);
 		this.setJMenuBar(menuBar);
 	}

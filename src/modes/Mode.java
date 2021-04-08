@@ -1,10 +1,10 @@
 package modes;
 
-import editor.DrawingArea;
+import editor.Canvas;
 
 public interface Mode {
 	
-	DrawingArea drawingArea = DrawingArea.getInstance();
+	Canvas canvas = Canvas.getInstance();
 	
 	void onMousePressed(int x,int y);
 	void onMouseReleased(int x,int y);

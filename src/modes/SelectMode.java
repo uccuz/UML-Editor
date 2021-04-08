@@ -17,11 +17,11 @@ public class SelectMode implements Mode {
 		if(selectedShape != null)
 			selectedShape.isSelected = false;
 		
-		selectedShape = drawingArea.selectShape(x, y);
+		selectedShape = Canvas.selectShape(x, y);
 		
 		if(selectedShape != null) {
 			selectedShape.isSelected = true;
-			drawingArea.repaint();
+			Canvas.repaint();
 		}
 		
 		setPrevPos(x,y);
@@ -45,7 +45,7 @@ public class SelectMode implements Mode {
 		
 		setPrevPos(x,y);
 
-		drawingArea.repaint();
+		Canvas.repaint();
 	}
 	
 	private void setPrevPos(int x,int y) {
@@ -54,7 +54,7 @@ public class SelectMode implements Mode {
 	}
 	
 	/*private Shape selectShape(int x,int y) {
-		Shape ArrayList<Shape> = drawingArea.GetShapeList();
+		Shape ArrayList<Shape> = Canvas.GetShapeList();
 		
 		return null;
 	}*/

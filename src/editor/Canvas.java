@@ -20,7 +20,7 @@ import shapes.Shape;
 
 public class Canvas extends JPanel{
 
-	// singleton object
+	// Singleton object
 	private static Canvas _Canvas = null;
 	
 	private ModeManager modeManager = new ModeManager();
@@ -30,25 +30,25 @@ public class Canvas extends JPanel{
 		// Add mouse listener
 		this.addMouseListener(new ClickListener());		
 		this.addMouseMotionListener(new DragListener());
-
 	}
 	
 	// Static method to create instance of Singleton class
 	public static Canvas getInstance() {
 		if (_Canvas == null)
 			_Canvas = new Canvas();
-  
         return _Canvas;
 	}
 	
 	// Add shape into drawing area
 	public void addShape(Shape shape) {
-		shapes.add(shape);
+		if(shape != null) {
+			shapes.add(shape);
+		}
 	}
 	
-	// Get shape in drawing area
+	// Get shape in canvas
 	public Shape GetShape(int i) {
-		if(i>=0 && i<shapes.size())
+		if( i >= 0 && i < shapes.size())
 			return shapes.get(i);
 		return null;
 	}
@@ -68,11 +68,6 @@ public class Canvas extends JPanel{
 		return null;
 	}
 	
-	// Get shapeList in drawing area
-	/*public ArrayList<Shape> GetShapeList() {
-		return shapes;
-	}*/
-	
 	
 	// set drawing mode
 	public void setMode(int i) {
@@ -81,7 +76,7 @@ public class Canvas extends JPanel{
 	
 	public void paint(Graphics g) {
 		
-		//���[�|�a��
+		//Need to Change
 		Dimension dim = getSize();
 		g.setColor(new Color(35, 37, 37));
 		g.fillRect(0, 0, dim.width, dim.height);
@@ -100,29 +95,40 @@ public class Canvas extends JPanel{
 		
 	}
 
-	// Handle all mouse event in drawing area
+	// Handle all mouse event in canvas
 	private class ClickListener extends MouseAdapter{
 		
+		@Override
 		public void mousePressed(MouseEvent e) {
+			// GetCurentMode
 			Mode mode = modeManager.GetCurrentMode();
 			if(mode == null)
 				return;
+			// Trigger mode
 			mode.onMousePressed(e.getX(), e.getY());
 		}
+		 
+		@Override
 		public void mouseReleased(MouseEvent e) {
+			// GetCurentMode
 			Mode mode = modeManager.GetCurrentMode();
 			if(mode == null)
 				return;
+			// Trigger mode
 			mode.onMouseReleased(e.getX(), e.getY());
 		}
 	}
 	
-	// Handle all mouse motion event in drawing area
+	// Handle all mouse motion event in canvas
 	private class DragListener extends MouseMotionAdapter{
+		
+		@Override
 		public void mouseDragged(MouseEvent e) {
+			// GetCurentMode
 			Mode mode = modeManager.GetCurrentMode();
 			if(mode == null)
 				return;
+			// Trigger mode
 			mode.onMouseDragged(e.getX(), e.getY());
 		}
 	}

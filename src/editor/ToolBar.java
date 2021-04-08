@@ -9,7 +9,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JToolBar;
 
-import modes.*;
 
 public class ToolBar extends JToolBar{
 	
@@ -24,12 +23,9 @@ public class ToolBar extends JToolBar{
 	ImageIcon useCaseIcon = new ImageIcon("img/useCase.png");
 	
 	// Setting
-	DrawBtn holdBtn;
+	DrawBtn holdBtn = null;
 	
 	ToolBar() {
-		
-		// Initialize setting
-		holdBtn = null;
 		
 		// ToolBar setting
 		this.setLayout(new GridLayout(btnNum,1));
@@ -53,10 +49,13 @@ public class ToolBar extends JToolBar{
 	
 	}
 	
+
+	
 	private class DrawBtn extends JButton {
 		
 		int managerNum = -1;
-		DrawBtn(ImageIcon icon,int managerNum) {
+		
+		DrawBtn(ImageIcon icon, int managerNum) {
 			this.setIcon(icon);
 			this.managerNum = managerNum;
 			this.addActionListener(new BtnListener());
@@ -76,8 +75,8 @@ public class ToolBar extends JToolBar{
 				holdBtn.setBackground(Color.gray);
 				
 				//System.out.println(managerNum);
-				// Set drawingArea mode
-				DrawingArea.getInstance().setMode(managerNum);
+				// Set Canvas mode
+				Canvas.getInstance().setMode(managerNum);
 			}
 			
 		}

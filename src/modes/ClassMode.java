@@ -7,8 +7,8 @@ public class ClassMode implements Mode{
 	@Override
 	public void onMousePressed(int x, int y) {
 		// TODO Auto-generated method stub
-		drawingArea.addShape(new ClassObject(x, y));
-		drawingArea.repaint();
+		Canvas.addShape(new ClassObject(x, y));
+		Canvas.repaint();
 	}
 
 	@Override
