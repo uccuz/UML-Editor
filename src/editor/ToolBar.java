@@ -43,22 +43,18 @@ public class ToolBar extends JToolBar{
 		DrawBtn classBtn = new DrawBtn(classIcon, new ClassMode());
 		DrawBtn useCaseBtn = new DrawBtn(useCaseIcon, new UseCaseMode());
 		
-		// Add button listener
-		selectBtn.addActionListener(btnListener);
-		associationBtn.addActionListener(btnListener);
-		generalizationBtn.addActionListener(btnListener);
-		compositionBtn.addActionListener(btnListener);
-		classBtn.addActionListener(btnListener);
-		useCaseBtn.addActionListener(btnListener);
-		
-		// Add button into toolBar
-		this.add(selectBtn);
-		this.add(associationBtn);
-		this.add(generalizationBtn);
-		this.add(compositionBtn);
-		this.add(classBtn);
-		this.add(useCaseBtn);
+		this.addBtn(selectBtn);
+		this.addBtn(associationBtn);
+		this.addBtn(generalizationBtn);
+		this.addBtn(compositionBtn);
+		this.addBtn(classBtn);
+		this.addBtn(useCaseBtn);
 	
+	}
+	
+	private void addBtn(DrawBtn btn) {
+		btn.addActionListener(btnListener);
+		this.add(btn);
 	}
 	
 	// Listen all button event
