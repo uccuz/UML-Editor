@@ -5,7 +5,7 @@ import java.awt.Graphics;
 public abstract class BasicObject extends Shape{
 	
 	protected int width, height; 
-	protected String name = "Object Name";
+	public String name = "Object Name";
 	
 	static final int PORTNUM = 4;
 	static final int MARGIN = 10;
