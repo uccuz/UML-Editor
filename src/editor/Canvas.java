@@ -73,6 +73,24 @@ public class Canvas extends JPanel{
 	}
 	
 	// Select Object in canvas
+	public ArrayList<BasicObject> getAllselectObject() {
+		ArrayList<BasicObject> objects = new ArrayList<BasicObject>();
+		shapes.forEach((shape)->{
+			if(shape.isSelected && (shape instanceof BasicObject)) {
+				objects.add((BasicObject)shape);
+			}
+		});
+		return objects;
+	}
+	
+	// Remove a list of object
+	public void removeObjects(ArrayList<BasicObject> objects) {
+		objects.forEach((object)->{
+			removeShape(object);
+		});
+	}
+	
+	// Select all Object in canvas
 	public BasicObject selectObject(int x,int y) {
 		int selected = -1;
 		for(int i = 0 ; i < shapes.size() ; i++) {

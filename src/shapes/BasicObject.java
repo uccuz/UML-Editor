@@ -67,5 +67,6 @@ public abstract class BasicObject extends Shape{
 				return true;
 		return false;
 	}
+	
 
 }
