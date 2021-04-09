@@ -131,13 +131,13 @@ public class Canvas extends JPanel{
 	
 	// Paint all thing
 	public void paint(Graphics g) {
-		//Need to Change
-		Dimension dim = getSize();
-		g.setColor(new Color(35, 37, 37));
-		g.fillRect(0, 0, dim.width, dim.height);
-		g.setColor(Color.white);
+		
+		super.paint(g);
+		this.setBackground(new Color(35, 37, 37));
+		
 		
 		// Draw setting
+		g.setColor(Color.white);
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setStroke(new BasicStroke(4));
 		g2d.setFont(new Font("Monaco",Font.PLAIN,16));
