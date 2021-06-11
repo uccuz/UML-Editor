@@ -11,14 +11,13 @@ import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.JPanel;
 
-
 import java.util.ArrayList;
 
 import modes.Mode;
 import shapes.BasicObject;
 import shapes.Shape;
 
-public class Canvas extends JPanel{
+public class Canvas extends JPanel {
 
 	// Singleton object
 	private static Canvas _Canvas = null;
@@ -28,32 +27,32 @@ public class Canvas extends JPanel{
 	Mode currentMode = null;
 	
 	Canvas() {
-		this.addMouseListener(new ClickListener());		
-		this.addMouseMotionListener(new DragListener());
+		this.addMouseListener( new ClickListener() );		
+		this.addMouseMotionListener( new DragListener() );
 	}
 	
 	// Static method to create instance of Singleton class
 	public static Canvas getInstance() {
-		if (_Canvas == null)
+		if ( _Canvas == null )
 			_Canvas = new Canvas();
         return _Canvas;
 	}
-	
-	// Add shape into drawing area
+
+	// Add shape into shape list
 	public void addShape(Shape shape) {
-		if(shape != null) {
+		if( shape != null ) {
 			shapes.add(shape);
 		}
 	}
 	
-	// Get shape in canvas
+	// Get shape in shape list
 	public Shape getShape(int i) {
 		if( i >= 0 && i < shapes.size() )
 			return shapes.get(i);
 		return null;
 	}
 	
-	// Remove shape in canvas
+	// Remove shape in shape list
 	public void removeShape(Shape shape) {
 		if(shapes.contains(shape))
 			shapes.remove(shape);
@@ -122,18 +121,19 @@ public class Canvas extends JPanel{
 		}
 	}
 	
-	
 	// set drawing mode
 	public void setMode(Mode mode) {
+		
+		this.clearSelection();
 		currentMode = mode;
 	}
 	
 	// Paint all thing
 	public void paint(Graphics g) {
 		
+		// Draw canvas
 		super.paint(g);
 		this.setBackground(new Color(35, 37, 37));
-		
 		
 		// Draw setting
 		g.setColor(Color.white);
@@ -141,15 +141,15 @@ public class Canvas extends JPanel{
 		g2d.setStroke(new BasicStroke(4));
 		g2d.setFont(new Font("Monaco",Font.PLAIN,16));
 		
-		// Draw all shapes in arrayList 
+
+		// Draw all shapes in shape list 
 		shapes.forEach((shape)->{
 			shape.draw(g2d);
 		});
-		
 	}
 
 	// Handle all mouse event in canvas
-	private class ClickListener extends MouseAdapter{
+	private class ClickListener extends MouseAdapter {
 		
 		@Override
 		public void mousePressed(MouseEvent e) {
@@ -162,7 +162,7 @@ public class Canvas extends JPanel{
 		@Override
 		public void mouseReleased(MouseEvent e) {
 			// GetCurentMode
-			if(currentMode == null)
+			if( currentMode == null )
 				return;
 			// Trigger mode
 			currentMode.onMouseReleased(e.getX(), e.getY());
@@ -170,11 +170,11 @@ public class Canvas extends JPanel{
 	}
 	
 	// Handle all mouse motion event in canvas
-	private class DragListener extends MouseMotionAdapter{
+	private class DragListener extends MouseMotionAdapter {
 		
 		@Override
 		public void mouseDragged(MouseEvent e) {
-			if(currentMode == null)
+			if( currentMode == null )
 				return;
 			// Trigger mode
 			currentMode.onMouseDragged(e.getX(), e.getY());

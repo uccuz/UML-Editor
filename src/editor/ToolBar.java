@@ -12,9 +12,9 @@ import javax.swing.JToolBar;
 import modes.*;
 
 
-public class ToolBar extends JToolBar{
+public class ToolBar extends JToolBar {
 	
-	private final int btnNum = 6; 
+	private static final int btnNum = 6; 
 	
 	// Image source
 	ImageIcon selectIcon = new ImageIcon("img/select.png");
@@ -33,23 +33,15 @@ public class ToolBar extends JToolBar{
 		
 		// ToolBar setting
 		this.setLayout(new GridLayout(btnNum,1));
-		this.setFloatable(false); // can't be moved
+		this.setFloatable(false);
 		
-		// Create button
-		DrawBtn selectBtn = new DrawBtn(selectIcon, new SelectMode());
-		DrawBtn associationBtn = new DrawBtn(associationIcon, new AssociationMode());
-		DrawBtn generalizationBtn = new DrawBtn(generalizationIcon, new GeneralizationMode());
-		DrawBtn compositionBtn = new DrawBtn(compositionIcon, new CompositionMode());
-		DrawBtn classBtn = new DrawBtn(classIcon, new ClassMode());
-		DrawBtn useCaseBtn = new DrawBtn(useCaseIcon, new UseCaseMode());
-		
-		this.addBtn(selectBtn);
-		this.addBtn(associationBtn);
-		this.addBtn(generalizationBtn);
-		this.addBtn(compositionBtn);
-		this.addBtn(classBtn);
-		this.addBtn(useCaseBtn);
-	
+		// Set button
+		this.addBtn( new DrawBtn(selectIcon, new SelectMode()) );
+		this.addBtn( new DrawBtn(associationIcon, new AssociationMode()) );
+		this.addBtn( new DrawBtn(generalizationIcon, new GeneralizationMode()) );
+		this.addBtn( new DrawBtn(compositionIcon, new CompositionMode()) );
+		this.addBtn( new DrawBtn(classIcon, new ClassMode()) );
+		this.addBtn( new DrawBtn(useCaseIcon, new UseCaseMode()) );
 	}
 	
 	private void addBtn(DrawBtn btn) {
@@ -63,13 +55,11 @@ public class ToolBar extends JToolBar{
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// Set new hold button
-			if(holdBtn != null)
+			if( holdBtn != null )
 				holdBtn.setBackground(Color.white);
-			if(e.getSource() instanceof DrawBtn)
+			if( e.getSource() != null ) {
 				holdBtn = (DrawBtn) e.getSource();
-			if(holdBtn != null) {
 				holdBtn.setBackground(Color.gray);
-				canvas.clearSelection();
 				canvas.setMode(holdBtn.getMode());
 			}
 		}
@@ -88,6 +78,5 @@ public class ToolBar extends JToolBar{
 		public Mode getMode() {
 			return mode;
 		}
-		
 	}
 }

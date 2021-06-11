@@ -5,7 +5,7 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
 
-public class UMLFrame extends JFrame{
+public class UMLEditor extends JFrame {
 	
 	// Frame size
 	final int WIDTH = 1000;
@@ -19,7 +19,7 @@ public class UMLFrame extends JFrame{
 	ToolBar toolBar;
 	MenuBar menuBar;
 	
-	UMLFrame(){
+	UMLEditor(){
 		
 		// Initialize component
 		Canvas  = Canvas.getInstance();
@@ -38,6 +38,4 @@ public class UMLFrame extends JFrame{
 		this.add(toolBar,BorderLayout.WEST);
 		this.setJMenuBar(menuBar);
 	}
-	
-
 }
