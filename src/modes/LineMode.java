@@ -23,7 +23,7 @@ public class LineMode implements Mode {
 	public void onMouseReleased(int x, int y) {
 		if(line != null) {
 			BasicObject endObject = canvas.selectObject(x, y);
-			if(endObject == null || frontObject == endObject || endObject instanceof GroupObject) {
+			if(endObject == null || frontObject == endObject /*|| endObject instanceof GroupObject*/) {
 				canvas.removeShape(line);
 			}
 			else {
@@ -48,8 +48,8 @@ public class LineMode implements Mode {
 		BasicObject frontObject = canvas.selectObject(x, y);
 		if(frontObject == null)
 			return null;
-		if(frontObject instanceof GroupObject)
-			return null;
+		//if(frontObject instanceof GroupObject)
+		//	return null;
 		line.setFrontPort(frontObject.getPort(x, y));
 		this.frontObject = frontObject;
 		return line;

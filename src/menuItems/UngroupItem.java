@@ -14,7 +14,7 @@ public class UngroupItem extends MenuItem{
 	}
 
 	@Override
-	public void actionPerformed() {
+	public void actionPerformed() {/*
 		ArrayList<BasicObject> objects;
 		objects = canvas.getAllselectObject();
 		if(objects.size() != 1) {
@@ -33,7 +33,7 @@ public class UngroupItem extends MenuItem{
 			canvas.addShape(object);
 		});
 		
-		canvas.repaint();
+		canvas.repaint();*/
 	}
 
 }
