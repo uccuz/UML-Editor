@@ -14,8 +14,8 @@ public class ChangeNameItem extends MenuItem {
 
 	@Override
 	public void actionPerformed() {
-		ArrayList<Shape> shapes;
-		shapes = canvas.getAllSelectShape();
+		
+		ArrayList<Shape> shapes = canvas.getAllSelectShape();
 		if(shapes.size() != 1) {
 			JOptionPane.showMessageDialog(canvas, "Please select only one basic object!!","alert",JOptionPane.PLAIN_MESSAGE);
 			return;

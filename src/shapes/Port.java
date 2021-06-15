@@ -24,13 +24,6 @@ public class Port extends Shape {
 		this.maxY = y + lENGTH;
 	}
 
-	@Override
-	public boolean isTouched(int x, int y) {
-		if(x > (minX-TOUCHSIZE) && x < (maxX+TOUCHSIZE) && y > (minY-TOUCHSIZE) && y < (maxY + TOUCHSIZE)) {
-			return true;
-		}
-		return false;
-	}
 	
 	public int getDistance(int x2,int y2) {
 		int x1 = minX + (maxX - minX)/2;

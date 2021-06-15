@@ -16,8 +16,6 @@ public abstract class Shape {
 	public abstract void draw(Graphics g);
 	
 	public abstract void setPosition(int x,int y);
-
-	public abstract boolean isTouched(int x, int y);
 	
 	
 	// Method create by parent
@@ -46,6 +44,10 @@ public abstract class Shape {
 	}
 	
 	// Composite pattern
+	public boolean isTouched(int x, int y) { return false; };
+	
+	public boolean isInside(int x1, int x2, int y1, int y2) { return false; };
+	
 	public void addShapes(ArrayList<Shape> shapes) {};
 	
 	public ArrayList<Shape> getShapes() { return null; };

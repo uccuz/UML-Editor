@@ -15,13 +15,12 @@ public class GroupItem extends MenuItem {
 
 	@Override
 	public void actionPerformed() {
-		ArrayList<Shape> shapes;
-		shapes = canvas.getAllSelectShape();
+		
+		ArrayList<Shape> shapes = canvas.getAllSelectShape();
 		if(shapes.size() <= 1) {
 			JOptionPane.showMessageDialog(canvas, "Please select at least two object!!","alert",JOptionPane.PLAIN_MESSAGE);
 			return;
 		}
-		//canvas.removeObjects(objects);
 		
 		Shape groupObject = new GroupObject();
 		groupObject.addShapes(shapes);

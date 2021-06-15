@@ -25,10 +25,6 @@ public class Line extends Shape {
 		this.maxY = y;
 	}
 
-	@Override
-	public boolean isTouched(int x, int y) {
-		return false;
-	}
 	
 	public void setPosition() {
 		if(frontPort != null) {

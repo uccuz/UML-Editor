@@ -50,7 +50,8 @@ public class SelectMode implements Mode {
 			selectedShape.setPosition(selectedShape.getMinX()+(x-prevX), selectedShape.getMinY()+(y-prevY));
 		}
 		else {
-			selectObject.setPosition(x, y);
+			if( selectObject != null )
+				selectObject.setPosition(x, y);
 			canvas.clearSelection();
 			canvas.setSelection(selectObject.getMinX(),selectObject.getMinY(),selectObject.getMaxX(),selectObject.getMaxY());
 		}

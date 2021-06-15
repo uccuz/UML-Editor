@@ -62,6 +62,7 @@ public abstract class BasicObject extends Shape{
 		return ports[index];
 	}
 	
+	@Override
 	public boolean isInside(int x1, int x2, int y1, int y2) {
 		if( x1 < minX && minX < x2 && x1 < maxX && maxX < x2)
 			if( y1 < minY && minY < y2 && y1 < maxY && maxY < y2)

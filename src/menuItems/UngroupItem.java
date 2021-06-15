@@ -15,8 +15,7 @@ public class UngroupItem extends MenuItem{
 	@Override
 	public void actionPerformed() {
 		
-		ArrayList<Shape> shapes;
-		shapes = canvas.getAllSelectShape();
+		ArrayList<Shape> shapes = canvas.getAllSelectShape();
 		if( shapes.size() != 1 ) {
 			JOptionPane.showMessageDialog(canvas, "Please select only one group object!!","alert",JOptionPane.PLAIN_MESSAGE);
 			return;
@@ -35,7 +34,6 @@ public class UngroupItem extends MenuItem{
 				canvas.addShape(object);
 			});
 		}
-		
 
 		canvas.repaint();
 	}

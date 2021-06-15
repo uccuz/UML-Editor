@@ -42,7 +42,7 @@ public class GroupObject extends Shape {
 		this.shapes.forEach((shape)->{
 			shape.isSelected = false;
 		});
-		this.setNewPosition();
+		setPosition();
 	}
 	
 	@Override
@@ -68,9 +68,8 @@ public class GroupObject extends Shape {
 		shapes.forEach((shape)->{
 			shape.setPosition(shape.minX + (x - minX),shape.minY + (y - minY));
 		});
-		setNewPosition();
+		setPosition();
 		setPortPosition();
-		
 	}
 
 	@Override
@@ -85,7 +84,7 @@ public class GroupObject extends Shape {
 		return shapes;
 	}
 	
-	public void setNewPosition() {
+	private void setPosition() {
 		int minX = Integer.MAX_VALUE;
 		int minY = Integer.MAX_VALUE;
 		int maxX = Integer.MIN_VALUE;

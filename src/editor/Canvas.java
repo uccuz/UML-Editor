@@ -108,13 +108,11 @@ public class Canvas extends JPanel {
 	
 	
 	public void setSelection(int minX, int minY, int maxX, int maxY) {
-		BasicObject basicObject;
+		Shape shape;
 		for(int i = 0 ; i < shapes.size() ; i++) {
-			if((shapes.get(i) instanceof BasicObject)) {
-				basicObject = (BasicObject)shapes.get(i);
-				if(basicObject.isInside(minX, maxX, minY, maxY)) {
-					basicObject.setSelected(true);
-				}
+			shape = shapes.get(i);
+			if(shape.isInside(minX, maxX, minY, maxY)) {
+				shape.setSelected(true);
 			}
 		}
 	}
