@@ -14,10 +14,8 @@ public class SelectObject extends Shape {
 	
 	@Override
 	public void draw(Graphics g) {
-		
 		Graphics2D g2D = (Graphics2D) g;
 		g2D.setColor(new Color(128, 128, 128, 128));
-		
 		g2D.fillRect(getMinX(), getMinY() , Math.abs(maxX - minX),Math.abs(maxY - minY));
 	}
 
@@ -31,21 +29,4 @@ public class SelectObject extends Shape {
 	public boolean isTouched(int x, int y) {
 		return false;
 	}
-	
-	public int getMinX() {
-		return Math.min(minX, maxX);
-	}
-	
-	public int getMinY() {
-		return Math.min(minY, maxY);
-	}
-	
-	public int getMaxX() {
-		return Math.max(minX, maxX);
-	}
-	
-	public int getMaxY() {
-		return Math.max(minY, maxY);
-	}
-
 }

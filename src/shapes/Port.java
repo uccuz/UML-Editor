@@ -2,7 +2,7 @@ package shapes;
 
 import java.awt.Graphics;
 
-public class Port extends Shape{
+public class Port extends Shape {
 
 	static final int lENGTH = 10;
 	static final int TOUCHSIZE = 10;
@@ -36,7 +36,7 @@ public class Port extends Shape{
 		int x1 = minX + (maxX - minX)/2;
 		int y1 = minY + (maxY - minY)/2;
 		
-		return (int)Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
+		return (int) Math.sqrt((y2 - y1) * (y2 - y1) + (x2 - x1) * (x2 - x1));
 	}
 
 }

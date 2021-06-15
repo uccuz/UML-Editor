@@ -1,24 +1,26 @@
 package modes;
 
-
 import shapes.SelectObject;
 import shapes.Shape;
 
 public class SelectMode implements Mode {
 
 	Shape selectedShape = null;
-	SelectObject selectObject = null;
+	Shape selectObject = null;
 	
 	private int prevX = 0;
 	private int prevY = 0;
 	
 	@Override
 	public void onMousePressed(int x, int y) {
+		
+		// Clear all shape select status
 		canvas.clearSelection();
+		// Select last shape which is touched in shapes
 		selectedShape = canvas.selectShape(x, y);
 		
 		if(selectedShape != null) {
-			selectedShape.isSelected = true;
+			selectedShape.setSelected(true);
 		}
 		else {
 			selectObject = new SelectObject(x,y);
@@ -31,23 +33,26 @@ public class SelectMode implements Mode {
 
 	@Override
 	public void onMouseReleased(int x, int y) {
-		if(selectObject!= null) {
+		
+		// Remove selectObject in canvas
+		if(selectObject != null) {
 			canvas.removeShape(selectObject);
+			selectObject = null;
 		}
-		selectObject = null;
 		
 		canvas.repaint();
 	}
 
 	@Override
 	public void onMouseDragged(int x, int y) {
+		
 		if(selectedShape != null) {
-			selectedShape.setPosition(selectedShape.minX + ( x - prevX ), selectedShape.minY + ( y - prevY ));
+			selectedShape.setPosition(selectedShape.getMinX()+(x-prevX), selectedShape.getMinY()+(y-prevY));
 		}
 		else {
 			selectObject.setPosition(x, y);
 			canvas.clearSelection();
-			canvas.getSelection(selectObject.getMinX(),selectObject.getMinY(),selectObject.getMaxX(),selectObject.getMaxY());
+			canvas.setSelection(selectObject.getMinX(),selectObject.getMinY(),selectObject.getMaxX(),selectObject.getMaxY());
 		}
 		
 		setPrevPos(x,y);

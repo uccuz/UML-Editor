@@ -2,7 +2,6 @@ package modes;
 
 
 import shapes.BasicObject;
-import shapes.GroupObject;
 import shapes.Line;
 
 public class LineMode implements Mode {
@@ -50,6 +49,7 @@ public class LineMode implements Mode {
 			return null;
 		//if(frontObject instanceof GroupObject)
 		//	return null;
+		
 		line.setFrontPort(frontObject.getPort(x, y));
 		this.frontObject = frontObject;
 		return line;

@@ -16,7 +16,6 @@ public class GenerationLine extends Line{
 		
 		g.drawLine(minX,minY,maxX,maxY);
 		drawArrow(g);
-
 	}
 	
 	private void drawArrow(Graphics g) {

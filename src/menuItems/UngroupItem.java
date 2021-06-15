@@ -4,8 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-import shapes.BasicObject;
-import shapes.GroupObject;
+import shapes.Shape;
 
 public class UngroupItem extends MenuItem{
 
@@ -14,26 +13,30 @@ public class UngroupItem extends MenuItem{
 	}
 
 	@Override
-	public void actionPerformed() {/*
-		ArrayList<BasicObject> objects;
-		objects = canvas.getAllselectObject();
-		if(objects.size() != 1) {
+	public void actionPerformed() {
+		
+		ArrayList<Shape> shapes;
+		shapes = canvas.getAllSelectShape();
+		if( shapes.size() != 1 ) {
 			JOptionPane.showMessageDialog(canvas, "Please select only one group object!!","alert",JOptionPane.PLAIN_MESSAGE);
 			return;
 		}
+		/*
 		if(!(objects.get(0) instanceof GroupObject)) {
 			JOptionPane.showMessageDialog(canvas, "Please select only one group object!!","alert",JOptionPane.PLAIN_MESSAGE);
 			return;
+		}*/
+		
+		Shape shape = shapes.get(0);
+		canvas.removeShape(shape);
+		
+		if(shape.getShapes() != null) {
+			shape.getShapes().forEach((object)->{
+				canvas.addShape(object);
+			});
 		}
-			
-		canvas.removeObjects(objects);
 		
-		GroupObject groupObject = (GroupObject)objects.get(0);
-		groupObject.getObjects().forEach((object)->{
-			canvas.addShape(object);
-		});
-		
-		canvas.repaint();*/
-	}
 
+		canvas.repaint();
+	}
 }

@@ -40,9 +40,8 @@ public class Canvas extends JPanel {
 
 	// Add shape into shape list
 	public void addShape(Shape shape) {
-		if( shape != null ) {
+		if( shape != null )
 			shapes.add(shape);
-		}
 	}
 	
 	// Get shape in shape list
@@ -58,10 +57,10 @@ public class Canvas extends JPanel {
 			shapes.remove(shape);
 	}
 	
-	// Select shape in canvas
+	// Select last shape which is touched in shapes
 	public Shape selectShape(int x,int y) {
 		int selected = -1;
-		for(int i = 0 ; i < shapes.size() ; i++) {
+		for( int i = 0 ; i < shapes.size() ; i++ ) {
 			if(shapes.get(i).isTouched(x,y))
 				selected = i;
 		}
@@ -71,17 +70,17 @@ public class Canvas extends JPanel {
 	}
 	
 	// Select Shape in canvas
-	public ArrayList<Shape> getAllSelectShapes() {
+	public ArrayList<Shape> getAllSelectShape() {
 		ArrayList<Shape> selectedShapes = new ArrayList<Shape>();
 		shapes.forEach((shape)-> {
-			if(shape.isSelected)
+			if(shape.getSelected())
 				selectedShapes.add(shape);
 		});
 		return selectedShapes;
 	}
 	
 	// Remove a list of object
-	public void removeObjects(ArrayList<BasicObject> objects) {
+	public void shape(ArrayList<BasicObject> objects) {
 		objects.forEach((object)->{
 			removeShape(object);
 		});
@@ -99,22 +98,22 @@ public class Canvas extends JPanel {
 		return null;
 	}
 	
-	// Clear all selection
+	// Clear all shape select status
 	public void clearSelection() {
 		shapes.forEach((shape)->{
-			shape.isSelected = false;
+			shape.setSelected(false);
 		});
 		this.repaint();
 	}
 	
 	
-	public void getSelection(int minX, int minY, int maxX, int maxY) {
+	public void setSelection(int minX, int minY, int maxX, int maxY) {
 		BasicObject basicObject;
 		for(int i = 0 ; i < shapes.size() ; i++) {
 			if((shapes.get(i) instanceof BasicObject)) {
 				basicObject = (BasicObject)shapes.get(i);
 				if(basicObject.isInside(minX, maxX, minY, maxY)) {
-					basicObject.isSelected = true;
+					basicObject.setSelected(true);
 				}
 			}
 		}

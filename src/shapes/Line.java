@@ -7,7 +7,7 @@ public class Line extends Shape {
 	Port frontPort = null;
 	Port endPort = null;
 	
-	public Line(int x,int y){
+	public Line(int x,int y) {
 		setPosition(x, y);
 	}
 	

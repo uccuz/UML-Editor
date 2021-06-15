@@ -5,7 +5,8 @@ import java.awt.Graphics;
 public abstract class BasicObject extends Shape{
 	
 	protected int width, height; 
-	public String name = "Object Name";
+	
+	protected  String name = "Object Name";
 	
 	static final int PORTNUM = 4;
 	static final int MARGIN = 10;
@@ -66,6 +67,11 @@ public abstract class BasicObject extends Shape{
 			if( y1 < minY && minY < y2 && y1 < maxY && maxY < y2)
 				return true;
 		return false;
+	}
+	
+	@Override
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 

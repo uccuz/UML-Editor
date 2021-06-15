@@ -4,11 +4,10 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-import shapes.BasicObject;
 import shapes.GroupObject;
 import shapes.Shape;
 
-public class GroupItem extends MenuItem{
+public class GroupItem extends MenuItem {
 
 	public GroupItem(String name) {
 		super(name);
@@ -17,9 +16,9 @@ public class GroupItem extends MenuItem{
 	@Override
 	public void actionPerformed() {
 		ArrayList<Shape> shapes;
-		shapes = canvas.getAllSelectShapes();
+		shapes = canvas.getAllSelectShape();
 		if(shapes.size() <= 1) {
-			JOptionPane.showMessageDialog(canvas, "Please select at least one object!!","alert",JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showMessageDialog(canvas, "Please select at least two object!!","alert",JOptionPane.PLAIN_MESSAGE);
 			return;
 		}
 		//canvas.removeObjects(objects);
@@ -27,8 +26,7 @@ public class GroupItem extends MenuItem{
 		Shape groupObject = new GroupObject();
 		groupObject.addShapes(shapes);
 		canvas.addShape(groupObject);
-		canvas.repaint();
 		
+		canvas.repaint();
 	}
-
 }
