@@ -15,7 +15,6 @@ public class GroupObject extends Shape {
 	protected Port ports[] = new Port[PORTNUM];
 	
 	public GroupObject() {
-		
 		for(int i = 0 ; i < PORTNUM ; i++) {
 			ports[i] = new Port(0,0);
 		}
@@ -42,8 +41,6 @@ public class GroupObject extends Shape {
 	@Override
 	public boolean canUngroup() { return true; };
 
-	
-	
 	@Override
 	public boolean isInside(int x1, int x2, int y1, int y2) {
 		if( x1 < minX && minX < x2 && x1 < maxX && maxX < x2)
@@ -51,7 +48,6 @@ public class GroupObject extends Shape {
 				return true;
 		return false;
 	}
-
 	
 	@Override
 	public void addShapes(ArrayList<Shape> shapes) {

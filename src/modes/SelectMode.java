@@ -55,7 +55,6 @@ public class SelectMode implements Mode {
 			canvas.clearSelection();
 			canvas.setSelection(selectObject.getMinX(),selectObject.getMinY(),selectObject.getMaxX(),selectObject.getMaxY());
 		}
-		
 		setPrevPos(x,y);
 		canvas.repaint();
 	}

@@ -50,6 +50,7 @@ public class LineMode implements Mode {
 		
 		line.setFrontPort(shape.getPort(x, y));
 		this.frontShape = shape;
+		
 		return line;
 	}
 

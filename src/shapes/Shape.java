@@ -18,7 +18,7 @@ public abstract class Shape {
 	public abstract void setPosition(int x,int y);
 	
 	
-	// Method create by parent
+	// Get set method
 	public void setSelected(boolean status) {
 		isSelected = status;
 	}
@@ -42,6 +42,7 @@ public abstract class Shape {
 	public int getMaxY() {
 		return Math.max(minY, maxY);
 	}
+
 	
 	// Composite pattern
 	public boolean isTouched(int x, int y) { return false; };

@@ -20,6 +20,7 @@ public class ChangeNameItem extends MenuItem {
 			JOptionPane.showMessageDialog(canvas, "Please select only one basic object!!","alert",JOptionPane.PLAIN_MESSAGE);
 			return;
 		}
+		
 		Shape shape = shapes.get(0);
 		if(!shape.canChangeName()) {
 			JOptionPane.showMessageDialog(canvas, "Please select only one basic object!!","alert",JOptionPane.PLAIN_MESSAGE);
@@ -27,12 +28,9 @@ public class ChangeNameItem extends MenuItem {
 		}
 
         String name = JOptionPane.showInputDialog(canvas, "Please enter new name: ");
-
-        if(name!= null) {
-        	shapes.get(0).setName(name);
-        }
+        if(name!= null)
+        	shape.setName(name);
+        
         canvas.repaint();
-		
 	}
-
 }

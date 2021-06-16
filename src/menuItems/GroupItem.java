@@ -23,7 +23,7 @@ public class GroupItem extends MenuItem {
 		}
 		
 		// Add group object into canvas
-		Shape groupObject = new GroupObject();
+		GroupObject groupObject = new GroupObject();
 		groupObject.addShapes(shapes);
 		canvas.addShape(groupObject);
 

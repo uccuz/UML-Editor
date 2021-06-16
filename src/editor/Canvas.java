@@ -14,7 +14,6 @@ import javax.swing.JPanel;
 import java.util.ArrayList;
 
 import modes.Mode;
-import shapes.BasicObject;
 import shapes.Shape;
 
 public class Canvas extends JPanel {
@@ -78,15 +77,9 @@ public class Canvas extends JPanel {
 		});
 		return selectedShapes;
 	}
+
 	
-	// Remove a list of object
-	public void shape(ArrayList<BasicObject> objects) {
-		objects.forEach((object)->{
-			removeShape(object);
-		});
-	}
-	
-	// Select shape 
+	// Select shape which can be connected
 	public Shape selectConnectShape(int x,int y) {
 		int selected = -1;
 		for(int i = 0 ; i < shapes.size() ; i++) {
@@ -106,7 +99,7 @@ public class Canvas extends JPanel {
 		this.repaint();
 	}
 	
-	
+	// Set shape isSelected status
 	public void setSelection(int minX, int minY, int maxX, int maxY) {
 		Shape shape;
 		for(int i = 0 ; i < shapes.size() ; i++) {

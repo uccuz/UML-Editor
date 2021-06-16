@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 
 import shapes.Shape;
 
-public class UngroupItem extends MenuItem{
+public class UngroupItem extends MenuItem {
 
 	public UngroupItem(String name) {
 		super(name);
@@ -29,7 +29,8 @@ public class UngroupItem extends MenuItem{
 		
 		canvas.removeShape(shape);
 		
-		if(shape.getShapes() != null) {
+		// Move shapes in groupPbject to canvas
+		if( shape.getShapes() != null ) {
 			shape.getShapes().forEach((object)->{
 				canvas.addShape(object);
 			});
