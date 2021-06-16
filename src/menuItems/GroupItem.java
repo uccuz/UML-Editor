@@ -22,9 +22,15 @@ public class GroupItem extends MenuItem {
 			return;
 		}
 		
+		// Add group object into canvas
 		Shape groupObject = new GroupObject();
 		groupObject.addShapes(shapes);
 		canvas.addShape(groupObject);
+
+		// Delete shapes in canvas
+		shapes.forEach((shape)-> {
+			canvas.removeShape(shape);
+		});
 		
 		canvas.repaint();
 	}

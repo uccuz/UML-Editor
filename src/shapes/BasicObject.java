@@ -14,10 +14,17 @@ public abstract class BasicObject extends Shape{
 	protected Port ports[] = new Port[PORTNUM];
 	
 	BasicObject() {
+
 		for(int i = 0 ; i < PORTNUM ; i++) {
 			ports[i] = new Port(0,0);
 		}
 	}
+	
+	@Override
+	public boolean canConnect() { return true; };
+	
+	@Override
+	public boolean canChangeName() { return true; };
 	
 	public void setPosition(int x,int y) {
 		this.minX = x;

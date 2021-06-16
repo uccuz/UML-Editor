@@ -20,13 +20,13 @@ public class UngroupItem extends MenuItem{
 			JOptionPane.showMessageDialog(canvas, "Please select only one group object!!","alert",JOptionPane.PLAIN_MESSAGE);
 			return;
 		}
-		/*
-		if(!(objects.get(0) instanceof GroupObject)) {
+
+		Shape shape = shapes.get(0);
+		if(!shape.canUngroup()) {
 			JOptionPane.showMessageDialog(canvas, "Please select only one group object!!","alert",JOptionPane.PLAIN_MESSAGE);
 			return;
-		}*/
+		}
 		
-		Shape shape = shapes.get(0);
 		canvas.removeShape(shape);
 		
 		if(shape.getShapes() != null) {

@@ -1,13 +1,13 @@
 package modes;
 
 
-import shapes.BasicObject;
+import shapes.Shape;
 import shapes.Line;
 
 public class LineMode implements Mode {
 
 	Line line = null;
-	BasicObject frontObject = null;
+	Shape frontShape = null;
 	
 	@Override
 	public void onMousePressed(int x, int y) {
@@ -21,16 +21,16 @@ public class LineMode implements Mode {
 	@Override
 	public void onMouseReleased(int x, int y) {
 		if(line != null) {
-			BasicObject endObject = canvas.selectObject(x, y);
-			if(endObject == null || frontObject == endObject /*|| endObject instanceof GroupObject*/) {
+			Shape endShape = canvas.selectConnectShape(x, y);
+			if(endShape == null || frontShape == endShape ) {
 				canvas.removeShape(line);
 			}
 			else {
-				line.setEndPort(endObject.getPort(x, y));
+				line.setEndPort(endShape.getPort(x, y));
 			}
 		}
 		line = null;
-		frontObject = null;
+		frontShape = null;
 		canvas.repaint();
 	}
 
@@ -44,14 +44,12 @@ public class LineMode implements Mode {
 	
 	public Line createLine(int x,int y,Line line) {
 		
-		BasicObject frontObject = canvas.selectObject(x, y);
-		if(frontObject == null)
+		Shape shape = canvas.selectConnectShape(x, y);
+		if(shape == null)
 			return null;
-		//if(frontObject instanceof GroupObject)
-		//	return null;
 		
-		line.setFrontPort(frontObject.getPort(x, y));
-		this.frontObject = frontObject;
+		line.setFrontPort(shape.getPort(x, y));
+		this.frontShape = shape;
 		return line;
 	}
 

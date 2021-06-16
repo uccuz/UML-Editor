@@ -15,10 +15,10 @@ public class GroupObject extends Shape {
 	protected Port ports[] = new Port[PORTNUM];
 	
 	public GroupObject() {
+		
 		for(int i = 0 ; i < PORTNUM ; i++) {
 			ports[i] = new Port(0,0);
 		}
-		setPortPosition();
 	}
 	
 	protected void setPortPosition() {
@@ -37,12 +37,30 @@ public class GroupObject extends Shape {
 	
 	
 	@Override
+	public boolean canGroup() { return true; };
+	
+	@Override
+	public boolean canUngroup() { return true; };
+
+	
+	
+	@Override
+	public boolean isInside(int x1, int x2, int y1, int y2) {
+		if( x1 < minX && minX < x2 && x1 < maxX && maxX < x2)
+			if( y1 < minY && minY < y2 && y1 < maxY && maxY < y2)
+				return true;
+		return false;
+	}
+
+	
+	@Override
 	public void addShapes(ArrayList<Shape> shapes) {
 		this.shapes = shapes;
 		this.shapes.forEach((shape)->{
 			shape.isSelected = false;
 		});
 		setPosition();
+		setPortPosition();
 	}
 	
 	@Override
@@ -80,7 +98,8 @@ public class GroupObject extends Shape {
 		return false;
 	}
 
-	public ArrayList<Shape> getObjects() {
+	@Override
+	public ArrayList<Shape> getShapes() {
 		return shapes;
 	}
 	

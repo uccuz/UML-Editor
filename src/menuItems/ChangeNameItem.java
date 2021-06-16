@@ -20,10 +20,12 @@ public class ChangeNameItem extends MenuItem {
 			JOptionPane.showMessageDialog(canvas, "Please select only one basic object!!","alert",JOptionPane.PLAIN_MESSAGE);
 			return;
 		}
-		/*if(objects.get(0) instanceof GroupObject) || !(objects.get(0) instanceof BasicObject)) {
+		Shape shape = shapes.get(0);
+		if(!shape.canChangeName()) {
 			JOptionPane.showMessageDialog(canvas, "Please select only one basic object!!","alert",JOptionPane.PLAIN_MESSAGE);
 			return;
-		}*/
+		}
+
         String name = JOptionPane.showInputDialog(canvas, "Please enter new name: ");
 
         if(name!= null) {

@@ -53,4 +53,14 @@ public abstract class Shape {
 	public ArrayList<Shape> getShapes() { return null; };
 	
 	public void setName(String name) {};
+	
+	public Port getPort(int x, int y) { return null; };
+	
+	public boolean canGroup() { return false; }; 
+	
+	public boolean canUngroup() { return false; }; 
+	
+	public boolean canChangeName() { return false; }; 
+	
+	public boolean canConnect() { return false; }; 
 }

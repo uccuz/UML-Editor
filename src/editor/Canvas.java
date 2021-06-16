@@ -86,15 +86,15 @@ public class Canvas extends JPanel {
 		});
 	}
 	
-	// Select all Object in canvas
-	public BasicObject selectObject(int x,int y) {
+	// Select shape 
+	public Shape selectConnectShape(int x,int y) {
 		int selected = -1;
 		for(int i = 0 ; i < shapes.size() ; i++) {
-			if(shapes.get(i).isTouched(x,y) && (shapes.get(i) instanceof BasicObject))
+			if(shapes.get(i).isTouched(x,y) && (shapes.get(i).canConnect()))
 				selected = i;
 		}
 		if(selected != -1)
-			return (BasicObject)shapes.get(selected);
+			return shapes.get(selected);
 		return null;
 	}
 	
